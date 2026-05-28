@@ -1,0 +1,32 @@
+[
+  {
+    "question": "What is the capital of Poland?",
+    "options": {
+      "a": "Warsaw",
+      "b": "Krakow",
+      "c": "Gdansk",
+      "d": "Wroclaw"
+    },
+    "correct": "a"
+  },
+  {
+    "question": "What is the capital of France?",
+    "options": {
+      "a": "Madrid",
+      "b": "Rome",
+      "c": "Paris",
+      "d": "Berlin"
+    },
+    "correct": "c"
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "options": {
+      "a": "Vienna",
+      "b": "Berlin",
+      "c": "Hamburg",
+      "d": "Munich"
+    },
+    "correct": "b"
+  }
+]

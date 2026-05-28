@@ -1,4 +1,6 @@
-def powitanie():
+import json
+
+def welcome():
     first_name = input('What is your first name? ')
     print(f'Hello, {first_name}!')
 
@@ -25,52 +27,55 @@ def powitanie():
 
 
 def quiz(first_name):
-    pytania = [
-        ('What is the capital of Poland?',
-        {
-            'a': 'Warsaw',
-            'b': 'Krakow',
-            'c': 'Gdansk',
-            'd': 'Wroclaw'
-        },
-        'a'),
-        ('What is the capital of France?',
-        {
-            'a': 'Madrid',
-            'b': 'Rome',
-            'c': 'Paris',
-            'd': 'Berlin'
-        },
-        'c'),
-        ('What is the capital of Germany?',
-        {
-            'a': 'Vienna',
-            'b': 'Berlin',
-            'c': 'Hamburg',
-            'd': 'Munich'
-        },
-        'b')
-    ]
+    # questions = [
+    #     ('What is the capital of Poland?',
+    #     {
+    #         'a': 'Warsaw',
+    #         'b': 'Krakow',
+    #         'c': 'Gdansk',
+    #         'd': 'Wroclaw'
+    #     },
+    #     'a'),
+    #     ('What is the capital of France?',
+    #     {
+    #         'a': 'Madrid',
+    #         'b': 'Rome',
+    #         'c': 'Paris',
+    #         'd': 'Berlin'
+    #     },
+    #     'c'),
+    #     ('What is the capital of Germany?',
+    #     {
+    #         'a': 'Vienna',
+    #         'b': 'Berlin',
+    #         'c': 'Hamburg',
+    #         'd': 'Munich'
+    #     },
+    #     'b')
+    # ]
+
+    with open('questions.json', 'r', encoding='utf-8') as file:
+        data = json.load(file)
 
     # print(pytania)
-    punkty = 0
+    points = 0
 
-    for pytanie, mozliwe_odpowiedzi, poprawna_odpowiedz in pytania:
-        print(pytanie)
-        opcje = "\n".join([f"{k}:{v}" for k,v in mozliwe_odpowiedzi.items()])
+    for element in data:
+        print(element["question"])
+        opcje = "\n".join([f"{k}:{v}" for k,v in element["options"].items()])
         print(opcje)
-        odpowiedz_uzytkownika = input('Your answer: ')
+        user_answer = input('Your answer: ')
 
-        if odpowiedz_uzytkownika == poprawna_odpowiedz:
+        if user_answer == element["correct"]:
             print('Correct Answer!')
-            punkty += 1
+            points += 1
         else:
             print('Wrong Answer!')
 
-    print(f'{first_name}, Your score is: {punkty}')
+    print(f'{first_name}, Your score is: {points}')
 
 def main():
-    received_first_name, received_age = powitanie()
+    received_first_name, received_age = welcome()
     quiz(received_first_name)
 
 if __name__ == "__main__":
