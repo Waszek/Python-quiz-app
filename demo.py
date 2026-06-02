@@ -27,33 +27,6 @@ def welcome():
 
 
 def quiz(first_name):
-    # questions = [
-    #     ('What is the capital of Poland?',
-    #     {
-    #         'a': 'Warsaw',
-    #         'b': 'Krakow',
-    #         'c': 'Gdansk',
-    #         'd': 'Wroclaw'
-    #     },
-    #     'a'),
-    #     ('What is the capital of France?',
-    #     {
-    #         'a': 'Madrid',
-    #         'b': 'Rome',
-    #         'c': 'Paris',
-    #         'd': 'Berlin'
-    #     },
-    #     'c'),
-    #     ('What is the capital of Germany?',
-    #     {
-    #         'a': 'Vienna',
-    #         'b': 'Berlin',
-    #         'c': 'Hamburg',
-    #         'd': 'Munich'
-    #     },
-    #     'b')
-    # ]
-
     with open('questions.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
 
