@@ -1,5 +1,15 @@
 import json
 
+class Question:
+    def __init__(self, text, option, correct_answer):
+        self.text = text
+        self.option = option
+        self.correct_answer = correct_answer
+
+    def check_answer(self, user_answer):
+        return user_answer == self.correct_answer
+
+
 def welcome():
     first_name = input('What is your first name? ')
     print(f'Hello, {first_name}!')
@@ -30,20 +40,30 @@ def quiz(first_name):
     with open('questions.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
 
-    # print(pytania)
+    question_objects = []
+
     points = 0
 
     for element in data:
-        print(element["question"])
-        opcje = "\n".join([f"{k}:{v}" for k,v in element["options"].items()])
-        print(opcje)
-        user_answer = input('Your answer: ')
+       question_obj = Question(
+           element["question"],
+           element["options"],
+           element["correct"]
+       )
+       question_objects.append(question_obj)
 
-        if user_answer == element["correct"]:
-            print('Correct Answer!')
-            points += 1
+    for question in question_objects:
+        print(question.text)
+        options = "\n".join(f"{k}: {v}" for k,v in question.option.items())
+        print(options)
+        answer = input('Your answer: ')
+
+        if question.check_answer(answer):
+                print('Correct answer!')
+                points += 1
         else:
-            print('Wrong Answer!')
+                print('Wrong answer!')
+    
 
     print(f'{first_name}, Your score is: {points}')
 
