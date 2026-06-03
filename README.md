@@ -71,7 +71,9 @@ firstProject/
 
 ### Object-Oriented Programming (OOP)
 
-The application uses OOP through the `Question` class:
+The application uses OOP through two main classes:
+
+#### Question Class
 
 ```python
 class Question:
@@ -84,11 +86,31 @@ class Question:
         return user_answer == self.correct_answer
 ```
 
-**OOP Benefits Used:**
-
 - **Encapsulation**: Question data (text, options, correct answer) is bundled within the class
 - **Methods**: The `check_answer()` method encapsulates the logic for validating user responses
 - **Reusability**: Creating multiple Question objects from JSON data without code duplication
+
+#### QuizGame Class
+
+```python
+class QuizGame:
+    def __init__(self, player_name, file_path):
+        self.player_name = player_name
+        self.file_path = file_path
+        self.questions = []
+        self.points = 0
+        self.load_questions()
+
+    def load_questions(self):
+        # Loads questions from JSON file
+
+    def start(self):
+        # Runs the quiz game loop
+```
+
+- **State Management**: Manages player name, file path, questions list, and score tracking
+- **Separation of Concerns**: Handles question loading and quiz execution logic
+- **Encapsulation**: Question loading and game logic are encapsulated within methods
 
 ### JSON File Handling
 
